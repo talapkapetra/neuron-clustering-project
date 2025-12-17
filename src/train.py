@@ -223,7 +223,8 @@ def xgboost_plot_confusion_matrix(y_true, y_pred, title="Confusion Matrix"):
     labels = sorted(set(y_true))
 
     plt.figure(figsize=(8, 7))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=labels, yticklabels=labels)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', linewidths=0.5,
+        linecolor='black', xticklabels=labels, yticklabels=labels, annot_kws={"size": 14})
     plt.title(title, fontsize=14)
     plt.xlabel("Predicted")
     plt.ylabel("Ground Truth")
