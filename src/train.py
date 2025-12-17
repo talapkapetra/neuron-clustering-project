@@ -96,7 +96,7 @@ def knn_with_outlier_filtering(data_dict, label, nu=0.03, k_range=(1, 30, 2), cv
     print(classification_report(y_test, y_pred_final))
     print('Accuracy:', round(accuracy_score(y_test, y_pred_final), 4))
     print('Macro F1:', round(f1_score(y_test, y_pred_final, average='macro'), 4))
-    return y_pred_final
+    return final_knn, y_pred_final
 
 def plot_confusion_matrix(y_true, y_pred, title="Confusion Matrix"):
     labels = sorted(np.unique(np.concatenate([y_true, y_pred])))
@@ -160,7 +160,7 @@ def random_forest_with_outlier_filtering(data_dict, label, nu=0.03, n_estimators
     print('Accuracy:', round(accuracy_score(y_test, y_pred_final), 4))
     print('Macro F1:', round(f1_score(y_test, y_pred_final, average='macro'), 4))
 
-    return y_pred_final
+    return rf, y_pred_final
 
 def xgboost_with_outlier_filtering(data_dict, label, nu=0.05, n_estimators=100, max_depth=4, learning_rate=0.1, random_state=42):
     
@@ -216,7 +216,7 @@ def xgboost_with_outlier_filtering(data_dict, label, nu=0.05, n_estimators=100, 
     print(classification_report(y_test_clean, y_pred))
 
     # Return cleaned lists
-    return y_pred, y_test_clean
+    return xgb_model, y_pred, y_test_clean
 
 def xgboost_plot_confusion_matrix(y_true, y_pred, title="Confusion Matrix"):
     cm = confusion_matrix(y_true, y_pred, labels=sorted(set(y_true)))
@@ -229,4 +229,3 @@ def xgboost_plot_confusion_matrix(y_true, y_pred, title="Confusion Matrix"):
     plt.ylabel("Ground Truth")
     plt.tight_layout()
     plt.show()
-
