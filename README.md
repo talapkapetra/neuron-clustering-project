@@ -42,6 +42,10 @@ Detailed methodology and results are documented inside the individual Jupyter no
 <h2>Dataset</h2>
 
 <table>
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 70%">
+  </colgroup>
   <thead>
     <tr>
       <th>File name</th>
@@ -68,6 +72,10 @@ Detailed methodology and results are documented inside the individual Jupyter no
 <h2>Notebooks</h2>
 
 <table>
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 70%">
+  </colgroup>
   <thead>
     <tr>
       <th>File name</th>
@@ -94,6 +102,11 @@ Detailed methodology and results are documented inside the individual Jupyter no
 <h2>Source Code (src)</h2>
 
 <table>
+  <colgroup>
+    <col style="width: 25%">
+    <col style="width: 25%">
+    <col style="width: 50%">
+  </colgroup>
   <thead>
     <tr>
       <th>File name</th>
@@ -112,13 +125,11 @@ Detailed methodology and results are documented inside the individual Jupyter no
       <td>make_umap</td>
       <td>Applies UMAP with configurable 2D or 3D embedding.</td>
     </tr>
-
     <tr>
       <td><a href="src/cluster.py">cluster.py</a></td>
       <td>run_hdbscan_umap</td>
       <td>Performs HDBSCAN clustering on UMAP embedding coordinates.</td>
     </tr>
-
     <tr>
       <td><a href="src/plot.py">plot.py</a></td>
       <td>plot_umap_2d</td>
@@ -134,7 +145,6 @@ Detailed methodology and results are documented inside the individual Jupyter no
       <td>plot_hdbscan_umap_clusters</td>
       <td>Visualizes HDBSCAN clustering results, automatically detecting 2D or 3D embeddings.</td>
     </tr>
-
     <tr>
       <td><a href="src/train.py">train.py</a></td>
       <td>split_umap_data</td>
@@ -165,7 +175,6 @@ Detailed methodology and results are documented inside the individual Jupyter no
       <td>xgboost_plot_confusion_matrix</td>
       <td>Plots confusion matrices for XGBoost models.</td>
     </tr>
-
     <tr>
       <td><a href="src/prediction.py">prediction.py</a></td>
       <td>apply_pca</td>
@@ -198,6 +207,10 @@ Detailed methodology and results are documented inside the individual Jupyter no
 <h2>Models</h2>
 
 <table>
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 70%">
+  </colgroup>
   <thead>
     <tr>
       <th>File name</th>
@@ -213,7 +226,6 @@ Detailed methodology and results are documented inside the individual Jupyter no
       <td><a href="robust_scaler.pkl">robust_scaler.pkl</a></td>
       <td>RobustScaler fitted on the historical dataset to normalize synapse features before dimensionality reduction.</td>
     </tr>
-
     <tr>
       <td><a href="umap_as_model.pkl">umap_as_model.pkl</a></td>
       <td>Trained UMAP model projecting excitatory (asymmetric, as) synapses into a 2D embedding space.</td>
@@ -234,7 +246,6 @@ Detailed methodology and results are documented inside the individual Jupyter no
       <td><a href="umap_pv_model.pkl">umap_pv_model.pkl</a></td>
       <td>Trained UMAP model for synapses belonging to parvalbumin (pv) neurons.</td>
     </tr>
-
     <tr>
       <td><a href="as_xgb_bundle.pkl">as_xgb_bundle.pkl</a></td>
       <td>Trained XGBoost classification model for excitatory (as) synapses, including preprocessing and outlier detection components.</td>
