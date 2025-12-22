@@ -47,6 +47,31 @@ Detailed methodology and results are documented inside the individual Jupyter no
 | neuron_synapse_clustering_HDBSCAN_result.csv | UMAP embedding coordinates and HDBSCAN cluster labels of the historical synapse dataset. |
 | new_neuron_synapse_raw_data.xlsx | Raw dataset of newly observed synapses used for cluster prediction. |
 
+<h2>Dataset</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30%;">File name</th>
+      <th style="width: 70%;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>neuron_synapse_raw_data.xlsx</code></td>
+      <td>Raw historical dataset containing synapse features used for clustering and model training.</td>
+    </tr>
+    <tr>
+      <td><code>neuron_synapse_clustering_HDBSCAN_result.csv</code></td>
+      <td>UMAP embedding coordinates and HDBSCAN cluster labels of the historical synapse dataset.</td>
+    </tr>
+    <tr>
+      <td><code>new_neuron_synapse_raw_data.xlsx</code></td>
+      <td>Raw dataset of newly observed synapses used for cluster prediction.</td>
+    </tr>
+  </tbody>
+</table>
+
 ## Notebooks
 
 | File name | Description |
