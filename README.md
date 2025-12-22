@@ -8,13 +8,17 @@
 
 
 The following tables summarize the notebooks, definitions and trained models used in this project. 
-Detailed methodology and results are documented inside the individual Jupyter notebooks.
+Detailed methodology and results are documented inside the individual Jupyter notebooks.  
+
+
 
 | File name | Description |
 |----------|-------------|
 | neuron_synapse_clustering_part1.ipynb | Data preprocessing and unsupervised clustering of the historical synapse dataset. This notebook standardizes raw synapse features and explores the intrinsic cluster structure. |
 | neuron_synapse_clustering_part2.ipynb | Model training on the historical dataset. Cluster labels are learned separately for major synapse types (excitatory, inhibitory) and neuron types (calbindin, calretinin, parvalbumin). |
-| neuron_synapse_clustering_part3.ipynb | Prediction of clusters for newly observed synapses using the previously trained models and dimensionality reduction pipelines. |
+| neuron_synapse_clustering_part3.ipynb | Prediction of clusters for newly observed synapses using the previously trained models and dimensionality reduction pipelines. |  
+
+
 
 | File name | Description |
 |----------|-------------|
