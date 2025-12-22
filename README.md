@@ -77,15 +77,15 @@ Detailed methodology and results are documented inside the individual Jupyter no
   <tbody>
     <tr>
       <td><a href="neuron_synapse_clustering_part1.ipynb">neuron_synapse_clustering_part1.ipynb</a></td>
-      <td>Data preprocessing and unsupervised clustering of the historical synapse dataset.</td>
+      <td>Data preprocessing and unsupervised clustering of the historical synapse dataset. This notebook standardizes raw synapse features and explores the intrinsic cluster structure.</td>
     </tr>
     <tr>
       <td><a href="neuron_synapse_clustering_part2.ipynb">neuron_synapse_clustering_part2.ipynb</a></td>
-      <td>Model training on the historical dataset for synapse and neuron types.</td>
+      <td>Model training on the historical dataset. Cluster labels are learned separately for major synapse types (excitatory, inhibitory) and neuron types (calbindin, calretinin, parvalbumin).</td>
     </tr>
     <tr>
       <td><a href="neuron_synapse_clustering_part3.ipynb">neuron_synapse_clustering_part3.ipynb</a></td>
-      <td>Prediction of clusters for newly observed synapses using trained models.</td>
+      <td>Prediction of clusters for newly observed synapses using the previously trained models and dimensionality reduction pipelines.</td>
     </tr>
   </tbody>
 </table>
@@ -105,47 +105,91 @@ Detailed methodology and results are documented inside the individual Jupyter no
     <tr>
       <td><a href="src/dimension_reduction.py">dimension_reduction.py</a></td>
       <td>pca_align_one_neuron</td>
-      <td>PCA-based spatial alignment separately for each neuron.</td>
+      <td>Performs PCA-based spatial alignment separately for each neuron (NeuronId).</td>
     </tr>
     <tr>
-      <td></td>
+      <td><a href="src/dimension_reduction.py">dimension_reduction.py</a></td>
       <td>make_umap</td>
       <td>Applies UMAP with configurable 2D or 3D embedding.</td>
     </tr>
+
     <tr>
       <td><a href="src/cluster.py">cluster.py</a></td>
       <td>run_hdbscan_umap</td>
       <td>Performs HDBSCAN clustering on UMAP embedding coordinates.</td>
     </tr>
+
     <tr>
       <td><a href="src/plot.py">plot.py</a></td>
       <td>plot_umap_2d</td>
       <td>Visualizes 2D UMAP embeddings.</td>
     </tr>
     <tr>
-      <td></td>
+      <td><a href="src/plot.py">plot.py</a></td>
       <td>plot_umap_3d</td>
       <td>Visualizes 3D UMAP embeddings.</td>
     </tr>
     <tr>
-      <td></td>
+      <td><a href="src/plot.py">plot.py</a></td>
       <td>plot_hdbscan_umap_clusters</td>
-      <td>Visualizes HDBSCAN clustering results (2D or 3D).</td>
+      <td>Visualizes HDBSCAN clustering results, automatically detecting 2D or 3D embeddings.</td>
+    </tr>
+
+    <tr>
+      <td><a href="src/train.py">train.py</a></td>
+      <td>split_umap_data</td>
+      <td>Performs train–test split on UMAP coordinates for supervised model training.</td>
+    </tr>
+    <tr>
+      <td><a href="src/train.py">train.py</a></td>
+      <td>knn_with_outlier_filtering</td>
+      <td>Trains a KNN classifier with outlier filtering using OneClassSVM and hyperparameter tuning (GridSearchCV).</td>
+    </tr>
+    <tr>
+      <td><a href="src/train.py">train.py</a></td>
+      <td>plot_confusion_matrix</td>
+      <td>Plots confusion matrices for KNN and Random Forest models.</td>
     </tr>
     <tr>
       <td><a href="src/train.py">train.py</a></td>
       <td>random_forest_with_outlier_filtering</td>
-      <td>Random Forest classifier with OneClassSVM-based outlier filtering.</td>
+      <td>Trains a Random Forest classifier with OneClassSVM-based outlier filtering.</td>
     </tr>
     <tr>
-      <td></td>
+      <td><a href="src/train.py">train.py</a></td>
       <td>xgboost_with_outlier_filtering</td>
-      <td>XGBoost classifier with OneClassSVM and label encoding.</td>
+      <td>Trains an XGBoost classifier with OneClassSVM-based outlier filtering and label encoding.</td>
+    </tr>
+    <tr>
+      <td><a href="src/train.py">train.py</a></td>
+      <td>xgboost_plot_confusion_matrix</td>
+      <td>Plots confusion matrices for XGBoost models.</td>
+    </tr>
+
+    <tr>
+      <td><a href="src/prediction.py">prediction.py</a></td>
+      <td>apply_pca</td>
+      <td>Applies the previously trained PCA models to new synapse data.</td>
+    </tr>
+    <tr>
+      <td><a href="src/prediction.py">prediction.py</a></td>
+      <td>apply_pca_robust_scaler</td>
+      <td>Applies the previously fitted RobustScaler to PCA-transformed features of new data.</td>
+    </tr>
+    <tr>
+      <td><a href="src/prediction.py">prediction.py</a></td>
+      <td>umap_model_syntype</td>
+      <td>Projects new synapses into UMAP space using synapse-type-specific UMAP models (excitatory/inhibitory).</td>
+    </tr>
+    <tr>
+      <td><a href="src/prediction.py">prediction.py</a></td>
+      <td>umap_model_neurontype</td>
+      <td>Projects new synapses into UMAP space using neuron-type-specific UMAP models.</td>
     </tr>
     <tr>
       <td><a href="src/prediction.py">prediction.py</a></td>
       <td>predict_clusters</td>
-      <td>Predicts cluster labels for newly observed synapses.</td>
+      <td>Predicts cluster labels for new synapses using trained classification models.</td>
     </tr>
   </tbody>
 </table>
@@ -163,27 +207,57 @@ Detailed methodology and results are documented inside the individual Jupyter no
   <tbody>
     <tr>
       <td><a href="pca_models_per_neuronid.pkl">pca_models_per_neuronid.pkl</a></td>
-      <td>PCA models for neuron-specific spatial alignment.</td>
+      <td>PCA models used for neuron-specific spatial alignment of synapse coordinates (one model per neuron).</td>
     </tr>
     <tr>
       <td><a href="robust_scaler.pkl">robust_scaler.pkl</a></td>
-      <td>RobustScaler fitted on historical dataset.</td>
+      <td>RobustScaler fitted on the historical dataset to normalize synapse features before dimensionality reduction.</td>
+    </tr>
+
+    <tr>
+      <td><a href="umap_as_model.pkl">umap_as_model.pkl</a></td>
+      <td>Trained UMAP model projecting excitatory (asymmetric, as) synapses into a 2D embedding space.</td>
     </tr>
     <tr>
+      <td><a href="umap_ss_model.pkl">umap_ss_model.pkl</a></td>
+      <td>Trained UMAP model projecting inhibitory (symmetric, ss) synapses into a 2D embedding space.</td>
+    </tr>
+    <tr>
+      <td><a href="umap_cb_model.pkl">umap_cb_model.pkl</a></td>
+      <td>Trained UMAP model for synapses belonging to calbindin (cb) neurons.</td>
+    </tr>
+    <tr>
+      <td><a href="umap_cr_model.pkl">umap_cr_model.pkl</a></td>
+      <td>Trained UMAP model for synapses belonging to calretinin (cr) neurons.</td>
+    </tr>
+    <tr>
+      <td><a href="umap_pv_model.pkl">umap_pv_model.pkl</a></td>
+      <td>Trained UMAP model for synapses belonging to parvalbumin (pv) neurons.</td>
+    </tr>
+
+    <tr>
       <td><a href="as_xgb_bundle.pkl">as_xgb_bundle.pkl</a></td>
-      <td>XGBoost model for excitatory synapses.</td>
+      <td>Trained XGBoost classification model for excitatory (as) synapses, including preprocessing and outlier detection components.</td>
+    </tr>
+    <tr>
+      <td><a href="ss_xgb_bundle.pkl">ss_xgb_bundle.pkl</a></td>
+      <td>Trained XGBoost classification model for inhibitory (ss) synapses, including preprocessing and outlier detection components.</td>
+    </tr>
+    <tr>
+      <td><a href="cb_xgb_bundle.pkl">cb_xgb_bundle.pkl</a></td>
+      <td>Trained XGBoost classification model for calbindin (cb) synapses.</td>
     </tr>
     <tr>
       <td><a href="cr_knn_bundle.pkl">cr_knn_bundle.pkl</a></td>
-      <td>KNN model for calretinin synapses.</td>
+      <td>Trained K-Nearest Neighbors (KNN) model for calretinin (cr) synapses, including outlier detection.</td>
     </tr>
     <tr>
-      <td><a href="cr_rf_bundle.pkl">cr_rf_bundle.pkl</a></td>
-      <td>Random Forest model for calretinin synapses.</td>
+      <td><a href="cr_xgb_bundle.pkl">cr_xgb_bundle.pkl</a></td>
+      <td>Trained XGBoost classification model for calretinin (cr) synapses.</td>
     </tr>
     <tr>
       <td><a href="pv_xgb_bundle.pkl">pv_xgb_bundle.pkl</a></td>
-      <td>XGBoost model for parvalbumin synapses.</td>
+      <td>Trained XGBoost classification model for parvalbumin (pv) synapses.</td>
     </tr>
   </tbody>
 </table>
