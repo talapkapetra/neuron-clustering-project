@@ -6,9 +6,38 @@
 - Data files are subject to additional usage restrictions.
   See DATA_USAGE.md for details.
 
+## Project Overview
 
-The following tables summarize the notebooks, definitions and trained models used in this project. 
-Detailed methodology and results are documented inside the individual Jupyter notebooks.  
+The goal of this project is to build a machine learning pipeline for clustering synapses (neuronal connections) of inhibitory neurons based on their spatial and morphological properties.
+
+Understanding the organization of synaptic inputs is essential for designing biologically realistic artificial neural networks and computational models. While excitatory neurons (such as pyramidal cells) are relatively well characterized, comprehensive datasets describing diverse inhibitory neuron types are still limited due to the technical challenges of high-resolution synapse characterization.
+
+This project uses a curated dataset of synapses belonging to calcium-binding protein (CBP) expressing inhibitory neurons, specifically calbindin, calretinin, and parvalbumin neurons. These proteins play a critical role in regulating intracellular calcium concentration, which is fundamental for neuronal signal transmission. In the primary visual cortex, approximately 95% of inhibitory neurons belong to this CBP category.
+
+The synapse dataset contains key morphological and spatial features extracted from mouse primary visual cortex, including:
+
+* Area and volume of axon terminals (boutons) connecting to dendritic synaptic fields
+
+* Area of synaptic contact regions on dendrites
+
+Three-dimensional coordinates of synaptic field centers and their distance from the cell body (soma) at nanometer resolution
+
+(Data were acquired using combined light and electron microscopy.)
+
+Using these features, the project investigates whether synapses form distinct clusters across:
+
+Major synapse types (excitatory vs. inhibitory; asymmetric vs. symmetric ultrastructure)
+
+Synapses belonging to specific CBP neuron types (calbindin, calretinin, parvalbumin)
+
+Unsupervised clustering is performed using **HDBSCAN** (Hierarchical Density-Based Spatial Clustering of Applications with Noise), which is well suited for spatial datasets with variable density. The resulting clusters are then used to train supervised, **tree-based models** (Random Forest and XGBoost) for cluster prediction of newly observed synapses.
+
+Although the dataset contains a limited number of synapses for some neuron types, robust and biologically meaningful clusters could be identified. These clusters provide a reliable basis for predictive modeling and offer valuable insights into synaptic organization relevant for fine-tuning neuronal network simulations and computational models.
+
+
+The following tables summarize the datasets, notebooks, definitions and trained models used in this project. 
+Detailed methodology and results are documented inside the individual Jupyter notebooks. 
+
 
 ## Dataset
 
