@@ -1,4 +1,4 @@
-# Clustering of synapses belonging to inhibitory neurons
+# Clustering Synapses of Inhibitory Neurons Using Machine Learning
 
 ## Licensing
 
